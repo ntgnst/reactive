@@ -1,0 +1,15 @@
+.contact-wrapper {
+  background-color: lightpink;
+  padding: 10px;
+}
+.contact-wrapper ul,
+li {
+  list-style: none;
+}
+input {
+  border-radius: 5px;
+  border-style: solid;
+  border-color: silver;
+  border-width: 1px;
+  padding: 4px;
+}

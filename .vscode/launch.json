@@ -1,0 +1,26 @@
+{
+  "version": "0.2.0",
+  "compounds": [
+    {
+      "name": "Compound",
+      "configurations": ["Launch via NPM", "Launch Chrome"]
+    }
+  ],
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch via NPM",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "start:debug"],
+      "port": 1453 // "start:debug": "react-scripts --inspect-brk=1453 start ",
+    },
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Launch Chrome",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}"
+    }
+  ]
+}
