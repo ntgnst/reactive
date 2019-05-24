@@ -12,7 +12,13 @@ import rootSaga from './middleware/sagaSample';
 import todoReducer from './reducers/todoReducer';
 import todos from './defaultData/todos';
 
-const sagaMiddleware = createSagaMiddleware();
+const sagaMiddleware = createSagaMiddleware({
+  onError: error => {
+    console.group('SAGA ERROR HANDLER');
+    console.log(error);
+    console.groupEnd();
+  }
+});
 
 const allEnhancers = compose(
   applyMiddleware(crashReporter, logger, thunk, sagaMiddleware),

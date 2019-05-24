@@ -14,13 +14,16 @@ export const getAllTodos = dispatch => {
 };
 export const getTodosById = id => dispatch => {
   setTimeout(() => {
-    fetch('https://jsonplaceholder.typicode.com/todos/' + id)
+    fetch('https://jsonplaceholderrr.typicode.com/todos/' + id)
       .then(data => data.json())
       .then(data =>
         dispatch({
           type: types.TODO_GET_BY_ID,
           payload: data
         })
-      );
+      )
+      .catch(err => {
+        throw Error(err);
+      });
   }, 5000);
 };

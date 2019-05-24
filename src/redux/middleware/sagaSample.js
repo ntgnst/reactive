@@ -1,29 +1,40 @@
-import { put, takeEvery, call, all, takeLatest } from 'redux-saga/effects';
+import { put, takeEvery, call, all } from 'redux-saga/effects';
 import { types } from '../actions/album';
 
-function* helloSaga() {
-  console.log('Hello Sagas!');
+function* fetchAlbums(action) {
+  try {
+    const res = yield call(fetch, 'https://jsonplaceholderrrr.typicode.com/albums', { method: 'GET' });
+    const data = yield res.json();
+    yield put({ type: types.ALBUM_GET_ALL_SUCCESS, payload: data });
+  } catch (err) {
+    yield put({ type: types.ALBUM_GET_ALL_FAILED, payload: err });
+    throw Error(err);
+  }
 }
 
-export function* fetchAlbums() {
-  console.log('================================ geldi get all ========================================');
-  const data = yield call(fetch('https://jsonplaceholder.typicode.com/albums').then(data => data.json()));
-  yield put({ type: types.ALBUM_GET_ALL, payload: data });
+function* fetchAlbumsById(actions) {
+  const data = yield call(() => fetch('https://jsonplaceholder.typicode.com/albums/' + actions.id).then(data => data.json()));
+  yield put({ type: types.ALBUM_GET_BY_ID_SUCCES, payload: data });
 }
 
-export function* fetchAlbumsById(actions) {
-  console.log('================================ geldi byid ========================================');
-  yield put({ type: types.ALBUM_GET_BY_ID });
-}
-
-export function* watchFetchAlbums() {
+function* watchFetchAlbums() {
   yield takeEvery(types.ALBUM_GET_ALL, fetchAlbums);
 }
 
-export function* watchFetchAlbumsById() {
+function* watchFetchAlbumsById() {
   yield takeEvery(types.ALBUM_GET_BY_ID, fetchAlbumsById);
 }
 
+function errorHandler(err) {
+  console.group('CRASH LOG LAYER: ');
+  console.log(err);
+  console.groupEnd();
+}
+
+function* watchError() {
+  yield takeEvery(action => /^.+_FAILED/.test(action.type), errorHandler);
+}
+
 export default function* rootSaga() {
-  yield all([helloSaga(), watchFetchAlbums(), watchFetchAlbumsById()]);
+  yield all([watchError(), watchFetchAlbums(), watchFetchAlbumsById()]);
 }
