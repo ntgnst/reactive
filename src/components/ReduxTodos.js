@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getAllTodos, getTodosById } from '../redux/actions/todos';
+import { getAllTodos, getTodosById } from '../redux/actions/todo';
 
 class ReduxTodos extends Component {
   render() {
     return (
       <div>
         <h2>Redux Todos</h2>
-        {this.props.todos && this.props.todos.map(item => <p key={item.id}>{item.title}</p>)}
+        {this.props.todos.map(item => (
+          <p key={item.id}>{item.title}</p>
+        ))}
         <button
           onClick={e => {
             this.props.dispatch(getAllTodos);

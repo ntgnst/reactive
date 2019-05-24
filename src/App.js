@@ -16,6 +16,7 @@ import TwoWayBinding from './components/TwoWayBinding';
 
 import logo from './logo.svg';
 import ReduxPhotos from './components/ReduxPhotos';
+import ReduxAlbums from './components/ReduxAlbums';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
                     <div>
                       <h2>Home Page</h2>
                       <img src={logo} alt="logo" style={{ width: 250 }} />
+                      <ReduxAlbums />
                       <ReduxTodos />
                       <ReduxPhotos />
                     </div>
