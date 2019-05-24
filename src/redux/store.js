@@ -8,14 +8,14 @@ import crashReporter from './middleware/crashReporter';
 import logger from './middleware/logger';
 import photoReducer from './reducers/photoReducer';
 import photos from './defaultData/photos';
-import rootSaga from './middleware/sagaSample';
+import rootSaga from './saga/sagaSample';
 import todoReducer from './reducers/todoReducer';
 import todos from './defaultData/todos';
 
 const sagaMiddleware = createSagaMiddleware({
   onError: error => {
     console.group('SAGA ERROR HANDLER');
-    console.log(error);
+    console.error(error);
     console.groupEnd();
   }
 });

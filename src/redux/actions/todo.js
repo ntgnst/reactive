@@ -14,7 +14,7 @@ export const getAllTodos = dispatch => {
 };
 export const getTodosById = id => dispatch => {
   setTimeout(() => {
-    fetch('https://jsonplaceholderrr.typicode.com/todos/' + id)
+    fetch('https://jsonplaceholder.typicode.com/todos/' + id)
       .then(data => data.json())
       .then(data =>
         dispatch({

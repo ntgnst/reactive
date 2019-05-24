@@ -3,7 +3,7 @@ import { types } from '../actions/album';
 
 function* fetchAlbums(action) {
   try {
-    const res = yield call(fetch, 'https://jsonplaceholderrrr.typicode.com/albums', { method: 'GET' });
+    const res = yield call(fetch, 'https://jsonplaceholder.typicode.com/albums', { method: 'GET' });
     const data = yield res.json();
     yield put({ type: types.ALBUM_GET_ALL_SUCCESS, payload: data });
   } catch (err) {
@@ -12,8 +12,9 @@ function* fetchAlbums(action) {
   }
 }
 
-function* fetchAlbumsById(actions) {
-  const data = yield call(() => fetch('https://jsonplaceholder.typicode.com/albums/' + actions.id).then(data => data.json()));
+function* fetchAlbumsById(action) {
+  const res = yield call(fetch,`https://jsonplaceholder.typicode.com/albums/${action.id}`);
+  const data = yield res.json();
   yield put({ type: types.ALBUM_GET_BY_ID_SUCCES, payload: data });
 }
 
@@ -27,10 +28,10 @@ function* watchFetchAlbumsById() {
 
 function errorHandler(err) {
   console.group('CRASH LOG LAYER: ');
-  console.log(err);
+  console.error(err);
   console.groupEnd();
 }
-
+//A saga for handle error states.
 function* watchError() {
   yield takeEvery(action => /^.+_FAILED/.test(action.type), errorHandler);
 }
