@@ -1,6 +1,7 @@
 import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import thunk from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 import albumReducer from './reducers/albumReducer';
 import albums from './defaultData/albums';
@@ -20,9 +21,8 @@ const sagaMiddleware = createSagaMiddleware({
   }
 });
 
-const allEnhancers = compose(
-  applyMiddleware(crashReporter, logger, thunk, sagaMiddleware),
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+const allEnhancers = composeWithDevTools(
+  applyMiddleware(crashReporter, logger, thunk, sagaMiddleware)
 );
 
 const store = createStore(
