@@ -9,7 +9,7 @@ import crashReporter from './middleware/crashReporter';
 import logger from './middleware/logger';
 import photoReducer from './reducers/photoReducer';
 import photos from './defaultData/photos';
-import rootSaga from './saga/sagaSample';
+import { rootSaga } from './saga/index.saga';
 import todoReducer from './reducers/todoReducer';
 import todos from './defaultData/todos';
 

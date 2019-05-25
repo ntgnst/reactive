@@ -17,15 +17,6 @@ class ReduxPhoto extends Component {
         }}
       >
         <div style={{padding: '16px 16px', textAlign: "center", display: 'block'}}>
-          <h2>Redux Photos</h2>
-        {this.props.photos.map(item => (
-          <div style={{ display: "inline-block", width: 150 }} key={item.id}>
-            <img alt="" src={item.thumbnailUrl} />
-            <br />
-            {item.title}
-          </div>
-        ))}
-        <br />
         <button
           onClick={e => {
             this.props.dispatch(getAllPhoto());
@@ -47,6 +38,16 @@ class ReduxPhoto extends Component {
         >
           3878
         </button>
+          <h2>Redux Photos</h2>
+          
+        {this.props.photos.map(item => (
+          <div style={{ display: "inline-block", width: 150 }} key={item.id}>
+            <img alt="" src={item.thumbnailUrl} />
+            <br />
+            {item.title}
+          </div>
+        ))}
+        <br />
         </div>
         
       </div>

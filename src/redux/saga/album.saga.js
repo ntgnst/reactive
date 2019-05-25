@@ -18,12 +18,11 @@ function* fetchAlbumsById(action) {
   yield put({ type: types.ALBUM_GET_BY_ID_SUCCES, payload: data });
 }
 
-function* watchFetchAlbums() {
-  yield takeEvery(types.ALBUM_GET_ALL, fetchAlbums);
-}
 
-function* watchFetchAlbumsById() {
-  yield takeEvery(types.ALBUM_GET_BY_ID, fetchAlbumsById);
+export function* watchAlbums(){
+  yield takeEvery(types.ALBUM_GET_BY_ID_REQUEST, fetchAlbumsById);
+  yield takeEvery(types.ALBUM_GET_ALL_REQUEST, fetchAlbums);
+  yield takeEvery(action => /^.+_FAILED/.test(action.type), errorHandler);
 }
 
 function errorHandler(err) {
@@ -31,11 +30,4 @@ function errorHandler(err) {
   console.error(err);
   console.groupEnd();
 }
-//A saga for handle error states.
-function* watchError() {
-  yield takeEvery(action => /^.+_FAILED/.test(action.type), errorHandler);
-}
 
-export default function* rootSaga() {
-  yield all([watchError(), watchFetchAlbums(), watchFetchAlbumsById()]);
-}

@@ -1,13 +1,13 @@
 export const types = {
-  ALBUM_GET_ALL: 'ALBUM_GET_ALL_REQUEST',
+  ALBUM_GET_ALL_REQUEST: 'ALBUM_GET_ALL_REQUEST',
   ALBUM_GET_ALL_SUCCESS: 'ALBUM_GET_ALL_SUCCESS',
   ALBUM_GET_ALL_FAILED: 'ALBUM_GET_ALL_FAILED',
-  ALBUM_GET_BY_ID: 'ALBUM_GET_BY_ID_REQUEST',
+  ALBUM_GET_BY_ID_REQUEST: 'ALBUM_GET_BY_ID_REQUEST',
   ALBUM_GET_BY_ID_SUCCES: 'ALBUM_GET_BY_ID_SUCCES',
   ALBUM_GET_BY_ID_FAILED: 'ALBUM_GET_BY_ID_FAILED'
 };
 
-export const getAllAlbum = () => ({ type: types.ALBUM_GET_ALL });
+export const getAllAlbum = () => ({ type: types.ALBUM_GET_ALL_REQUEST });
 
 /*
 export const getAllAlbum = () => async dispatch => {
@@ -18,4 +18,4 @@ export const getAllAlbum = () => async dispatch => {
   } catch (err) {}
 };
 */
-export const getAlbumById = id => ({ type: types.ALBUM_GET_BY_ID, id });
+export const getAlbumById = id => ({ type: types.ALBUM_GET_BY_ID_REQUEST, id });

@@ -24,7 +24,7 @@ class ReduxTodos extends Component {
           ))}
           <button
             onClick={e => {
-              this.props.dispatch(getAllTodos);
+              this.props.dispatch(getAllTodos());
             }}
           >
             get all
