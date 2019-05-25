@@ -1,4 +1,4 @@
-import { put, takeEvery, call, all } from 'redux-saga/effects';
+import { put, takeEvery, call } from 'redux-saga/effects';
 import { types } from '../actions/album';
 
 function* fetchAlbums(action) {
