@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
-import { withRouter } from 'react-router-dom';
+import React, { Component } from "react";
+import styled from "styled-components";
+import { withRouter } from "react-router-dom";
 
 class FetchData extends Component {
   state = {
@@ -8,15 +8,15 @@ class FetchData extends Component {
     isLoading: true
   };
 
-  userUrl = 'https://jsonplaceholder.typicode.com/users';
-  postUrl = 'https://jsonplaceholder.typicode.com/posts';
+  userUrl = "https://jsonplaceholder.typicode.com/users";
+  postUrl = "https://jsonplaceholder.typicode.com/posts";
   myTimer;
   fetchRemoteData = () => {
     const type = this.props.match.params.type;
     this.setState({ isLoading: true });
 
     this.myTimer = setTimeout(() => {
-      fetch(type === 'users' ? this.userUrl : this.postUrl)
+      fetch(type === "users" ? this.userUrl : this.postUrl)
         .then(data => data.json())
         .then(data => {
           this.setState({ list: data, isLoading: false });
@@ -43,9 +43,9 @@ class FetchData extends Component {
       <MyDiv>
         <h2>Fetch {type}</h2>
         {this.state.isLoading
-          ? 'Loading...'
+          ? "Loading..."
           : this.state.list.map(item =>
-              type === 'users' ? (
+              type === "users" ? (
                 <p key={item.id}>
                   {item.name} - @{item.username}
                 </p>

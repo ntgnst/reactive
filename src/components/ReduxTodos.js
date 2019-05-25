@@ -15,7 +15,7 @@ class ReduxTodos extends Component {
         <div
           style={{
             padding: "16px 16px",
-            textAlign: "center",
+            textAlign: "center"
           }}
         >
           <h2>Redux Todos</h2>

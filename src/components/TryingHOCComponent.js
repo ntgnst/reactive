@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import SampleHOC from './SampleHOC';
+import React, { Component } from "react";
+import SampleHOC from "./SampleHOC";
 
 class TryingHOCComponent extends Component {
   state = {
@@ -13,7 +13,7 @@ class TryingHOCComponent extends Component {
      */
     this.state.list = props.list || [];
 
-    fetch('https://jsonplaceholder.typicode.com/todos')
+    fetch("https://jsonplaceholder.typicode.com/todos")
       .then(data => data.json())
       .then(data => this.setState({ list: data }));
   }

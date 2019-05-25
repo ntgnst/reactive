@@ -1,4 +1,4 @@
-import { types } from '../actions/todo';
+import { types } from "../actions/todo";
 
 export default (state = [], action) => {
   switch (action.type) {

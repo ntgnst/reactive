@@ -16,40 +16,45 @@ class ReduxPhoto extends Component {
           width: "100%"
         }}
       >
-        <div style={{padding: '16px 16px', textAlign: "center", display: 'block'}}>
-        <button
-          onClick={e => {
-            this.props.dispatch(getAllPhoto());
+        <div
+          style={{
+            padding: "16px 16px",
+            textAlign: "center",
+            display: "block"
           }}
         >
-          get all
-        </button>
-        <button
-          onClick={e => {
-            this.props.dispatch(getLessPhoto(3));
-          }}
-        >
-          get less
-        </button>
-        <button
-          onClick={e => {
-            this.props.dispatch(getPhotoById(3878));
-          }}
-        >
-          3878
-        </button>
+          <button
+            onClick={e => {
+              this.props.dispatch(getAllPhoto());
+            }}
+          >
+            get all
+          </button>
+          <button
+            onClick={e => {
+              this.props.dispatch(getLessPhoto(3));
+            }}
+          >
+            get less
+          </button>
+          <button
+            onClick={e => {
+              this.props.dispatch(getPhotoById(3878));
+            }}
+          >
+            3878
+          </button>
           <h2>Redux Photos</h2>
-          
-        {this.props.photos.map(item => (
-          <div style={{ display: "inline-block", width: 150 }} key={item.id}>
-            <img alt="" src={item.thumbnailUrl} />
-            <br />
-            {item.title}
-          </div>
-        ))}
-        <br />
+
+          {this.props.photos.map(item => (
+            <div style={{ display: "inline-block", width: 150 }} key={item.id}>
+              <img alt="" src={item.thumbnailUrl} />
+              <br />
+              {item.title}
+            </div>
+          ))}
+          <br />
         </div>
-        
       </div>
     );
   }

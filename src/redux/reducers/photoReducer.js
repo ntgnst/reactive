@@ -1,4 +1,4 @@
-import { types } from '../actions/photo';
+import { types } from "../actions/photo";
 
 export default (state = [], action) => {
   switch (action.type) {

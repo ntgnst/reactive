@@ -10,7 +10,10 @@ export const types = {
   PHOTO_GET_BY_ID_SUCCESS: "PHOTO_GET_BY_ID_SUCCESS"
 };
 
-export const getLessPhoto = count => ({ type: types.PHOTO_GET_LESS_REQUEST, count});
+export const getLessPhoto = count => ({
+  type: types.PHOTO_GET_LESS_REQUEST,
+  count
+});
 
 export const getAllPhoto = () => ({ type: types.PHOTO_GET_ALL_REQUEST });
 

@@ -1,14 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 export default class ErrorHandler extends Component {
   state = { hasError: false };
 
   componentDidCatch(error, errorInfo) {
-    console.log('============== ERR ===============');
+    console.log("============== ERR ===============");
     console.log(error);
     console.log(errorInfo);
-    console.log('============== ERR ===============');
-
+    console.log("============== ERR ===============");
     this.setState({ hasError: true });
   }
 

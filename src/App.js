@@ -13,11 +13,10 @@ import ReduxTodos from "./components/ReduxTodos";
 import store from "./redux/store";
 import TryingHOCComponent from "./components/TryingHOCComponent";
 import TwoWayBinding from "./components/TwoWayBinding";
-
 import logo from "./logo.svg";
-import ReduxPhotos from "./components/ReduxPhotos";
 import ReduxAlbums from "./components/ReduxAlbums";
 
+const ReduxPhotos = React.lazy(() => import("./components/ReduxPhotos"));
 function App() {
   return (
     <Provider store={store}>
@@ -31,17 +30,19 @@ function App() {
                 render={() => {
                   return (
                     <div
-                    style={{
-                      boxShadow: "1px 1px 1px 1px rgba(0,0,0,0.2)",
-                      transition: "0.3s",
-                      width: "100%"
-                    }}
+                      style={{
+                        boxShadow: "1px 1px 1px 1px rgba(0,0,0,0.2)",
+                        transition: "0.3s",
+                        width: "100%"
+                      }}
                     >
                       <h2>Home Page</h2>
                       <img src={logo} alt="logo" style={{ width: 250 }} />
                       <ReduxAlbums />
                       <ReduxTodos />
-                      <ReduxPhotos />
+                      <React.Suspense fallback={<div>Loading....</div>}>
+                        <ReduxPhotos />
+                      </React.Suspense>
                     </div>
                   );
                 }}

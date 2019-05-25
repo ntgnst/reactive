@@ -1,7 +1,7 @@
 import { call, takeEvery, takeLatest, put, select } from "redux-saga/effects";
 import { types } from "../actions/photo";
 
-const getState = (state) => state;
+const getState = state => state;
 
 function* getAllPhotos(action) {
   try {
@@ -18,8 +18,11 @@ function* getAllPhotos(action) {
 
 function* getLessPhoto(action) {
   try {
-    const state =  yield select(getState);
-    yield put({ type: types.PHOTO_GET_LESS_SUCCESS, payload: state.photos.slice(action.count) });
+    const state = yield select(getState);
+    yield put({
+      type: types.PHOTO_GET_LESS_SUCCESS,
+      payload: state.photos.slice(action.count)
+    });
   } catch (error) {
     yield put({ type: types.PHOTO_GET_LESS_FAILED, payload: error });
     throw error;
@@ -28,7 +31,7 @@ function* getLessPhoto(action) {
 
 function* getPhotoById(action) {
   try {
-    const state =  yield select(getState);
+    const state = yield select(getState);
     yield put({
       type: types.PHOTO_GET_BY_ID_SUCCESS,
       payload: state.photos.filter(item => item.id === action.id)

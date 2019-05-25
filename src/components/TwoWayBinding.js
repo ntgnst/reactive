@@ -1,15 +1,15 @@
-import React from 'react';
+import React from "react";
 
 export default class TwoWayBinding extends React.Component {
   state = {
-    name: 'something'
+    name: "something"
   };
   handler = e => {
     this.setState({ name: e.target.value });
   };
   render() {
     return (
-      <div style={{ backgroundColor: 'lightblue', padding: 10 }}>
+      <div style={{ backgroundColor: "lightblue", padding: 10 }}>
         <h2>Two Way Binding</h2>
         <strong>{this.state.name}</strong>
         <br />

@@ -7,4 +7,4 @@ export const types = {
   TODO_GET_BY_ID_FAILED: "TODO_GET_BY_ID_FAILED"
 };
 export const getAllTodos = () => ({ type: types.TODO_GET_ALL_REQUEST });
-export const getTodosById = id => ({type: types.TODO_GET_BY_ID_REQUEST, id});
+export const getTodosById = id => ({ type: types.TODO_GET_BY_ID_REQUEST, id });
