@@ -1,9 +1,8 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
-import React from "react";
+import React, { useState } from "react";
 import Contact from "./components/contact/Contact";
 import ErrorHandler from "./components/ErrorHandler";
-import FetchData from "./components/FetchData";
 import FormSample from "./components/FormSample";
 import Layout from "./components/layout/Layout";
 import OldPage from "./components/OldPage";
@@ -14,9 +13,15 @@ import TryingHOCComponent from "./components/TryingHOCComponent";
 import TwoWayBinding from "./components/TwoWayBinding";
 import logo from "./logo.svg";
 import ReduxAlbums from "./components/ReduxAlbums";
-
+import FetchData from "./components/FetchData";
+import Loader from "react-loader-spinner";
 const ReduxPhotos = React.lazy(() => import("./components/ReduxPhotos"));
-function App() {
+// const FetchData = React.lazy(() => import("./components/FetchData"));
+const App = () => {
+  const [showPhotos, setShowPhotos] = useState(false);
+  const changePhotoState = () => {
+    setShowPhotos(!showPhotos);
+  };
   return (
     <Provider store={store}>
       <Router>
@@ -39,9 +44,21 @@ function App() {
                       <img src={logo} alt="logo" style={{ width: 250 }} />
                       <ReduxAlbums />
                       <ReduxTodos />
-                      <React.Suspense fallback={<div>Loading....</div>}>
-                        <ReduxPhotos />
-                      </React.Suspense>
+                      <button onClick={changePhotoState}>Render Photos</button>
+                      {showPhotos ? (
+                        <React.Suspense
+                          fallback={
+                            <Loader
+                              type="Puff"
+                              color="#00BFFF"
+                              height="100"
+                              width="100"
+                            />
+                          }
+                        >
+                          <ReduxPhotos />
+                        </React.Suspense>
+                      ) : null}
                     </div>
                   );
                 }}
@@ -64,6 +81,6 @@ function App() {
       </Router>
     </Provider>
   );
-}
+};
 
 export default App;

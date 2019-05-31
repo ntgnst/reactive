@@ -30,7 +30,21 @@ export function register(config) {
       // serve assets; see https://github.com/facebook/create-react-app/issues/2374
       return;
     }
-
+    window.addEventListener('install', function(e) {
+      e.waitUntil(
+        caches.open('test').then(function(cache) {
+          return cache.addAll([
+            '/',
+            '/index.html',
+            '/index.html?homescreen=1',
+            '/?homescreen=1',
+            '/styles/main.css',
+            '/scripts/main.min.js',
+            '/sounds/airhorn.mp3'
+          ]);
+        })
+      );
+     });
     window.addEventListener('load', () => {
       const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
 

@@ -7,6 +7,7 @@ import {
 } from "../redux/actions/photo";
 
 class ReduxPhoto extends Component {
+
   render() {
     return (
       <div
