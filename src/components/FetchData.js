@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { withRouter } from "react-router-dom";
-import CustomLoader from "../components/CustomLoader";
-
+import CustomLoader from "./CustomLoader";
 class FetchData extends Component {
   state = {
     list: [],
@@ -22,7 +21,7 @@ class FetchData extends Component {
         .then(data => {
           this.setState({ list: data, isLoading: false });
         });
-    }, 1000);
+    }, 3000);
   };
 
   componentDidMount() {
@@ -43,19 +42,17 @@ class FetchData extends Component {
     return (
       <MyDiv>
         <h2>Fetch {type}</h2>
-        {this.state.isLoading ? (
-          <CustomLoader type="MutatingDot" color="#00BFFF"/>
-        ) : (
-          this.state.list.map(item =>
-            type === "users" ? (
-              <p key={item.id}>
-                {item.name} - @{item.username}
-              </p>
-            ) : (
-              <p key={item.id}>{item.title}</p>
-            )
-          )
-        )}
+        {this.state.isLoading
+          ? <CustomLoader />
+          : this.state.list.map(item =>
+              type === "users" ? (
+                <p key={item.id}>
+                  {item.name} - @{item.username}
+                </p>
+              ) : (
+                <p key={item.id}>{item.title}</p>
+              )
+            )}
       </MyDiv>
     );
   }

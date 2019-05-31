@@ -1,7 +1,14 @@
 import React from "react";
-import Loader from "react-loader-spinner";
+import { CircleLoader as Loader } from "react-spinners";
+import { css } from "@emotion/core";
+
 class CustomLoader extends React.Component {
   render() {
+    const override = css`
+      display: block;
+      margin: 0 auto;
+      border-color: red;
+    `;
     return (
       <div
         style={{
@@ -18,13 +25,12 @@ class CustomLoader extends React.Component {
             style={{ marginLeft: "auto", marginRight: "auto", width: "800px" }}
           >
             <Loader
-              type={this.props.type}
-              color={this.props.color}
-              height="100"
-              width="100"
-            >
-              {this.props.children}
-            </Loader>
+              sizeUnit={"px"}
+              size={50}
+              color={"#000000"}
+              loading={true}
+              css={override}
+            />
           </div>
         </div>
       </div>

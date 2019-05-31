@@ -5,10 +5,19 @@ import {
   getPhotoById,
   getLessPhoto
 } from "../redux/actions/photo";
+import { Parallax } from "react-parallax";
 
 class ReduxPhoto extends Component {
-
   render() {
+    const insideStyles = {
+      background: "white",
+      padding: 20,
+      position: "absolute",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%,-50%)",
+      height: "auto"
+    };
     return (
       <div
         style={{
@@ -48,11 +57,42 @@ class ReduxPhoto extends Component {
           <h2>Redux Photos</h2>
 
           {this.props.photos.map(item => (
-            <div style={{ display: "inline-block", width: 150 }} key={item.id}>
-              <img alt="" src={item.thumbnailUrl} />
-              <br />
+            <React.Fragment key={item.thumbnailUrl}>
               {item.title}
-            </div>
+              <Parallax
+                strength={200}
+                css={insideStyles}
+                bgImageSizes={200}
+                bgImage={item.thumbnailUrl}
+                blur={{ min: -7, max: 10 }}
+                renderLayer={percentage => (
+                  <div>
+                    <div
+                      style={{
+                        position: "absolute",
+                        background: `rgba(255, 255, 224, ${percentage * 1})`,
+                        left: "50%",
+                        top: "50%",
+                        borderRadius: "50%",
+                        transform: "translate(-50%,-50%)",
+                        width: percentage * 500,
+                        height: percentage * 500
+                      }}
+                    />
+                  </div>
+                )}
+              >
+                <div style={{ height: 500 }}>
+                  <div style={{
+                        position: "absolute",
+                        background: `rgba(255, 255, 255, 0.7)`,
+                        left: "50%",
+                        top: "50%",
+                        transform: "translate(-50%,-50%)",
+                      }}>Description will be come here ....</div>
+                </div>
+              </Parallax>
+            </React.Fragment>
           ))}
           <br />
         </div>

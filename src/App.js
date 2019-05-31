@@ -15,7 +15,7 @@ import logo from "./logo.svg";
 import ReduxAlbums from "./components/ReduxAlbums";
 import FetchData from "./components/FetchData";
 import Loader from "react-loader-spinner";
-const ReduxPhotos = React.lazy(() => import("./components/ReduxPhotos"));
+import ReduxPhotos from "./components/ReduxPhotos";
 // const FetchData = React.lazy(() => import("./components/FetchData"));
 const App = () => {
   const [showPhotos, setShowPhotos] = useState(false);
@@ -44,21 +44,7 @@ const App = () => {
                       <img src={logo} alt="logo" style={{ width: 250 }} />
                       <ReduxAlbums />
                       <ReduxTodos />
-                      <button onClick={changePhotoState}>Render Photos</button>
-                      {showPhotos ? (
-                        <React.Suspense
-                          fallback={
-                            <Loader
-                              type="Puff"
-                              color="#00BFFF"
-                              height="100"
-                              width="100"
-                            />
-                          }
-                        >
-                          <ReduxPhotos />
-                        </React.Suspense>
-                      ) : null}
+                      <ReduxPhotos />
                     </div>
                   );
                 }}
