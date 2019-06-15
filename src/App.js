@@ -42,10 +42,9 @@ const App = () => {
                     >
                       <h2>Home Page</h2>
                       <img src={logo} alt="logo" style={{ width: 250 }} />
-                      {ReduxAlbumsComp}
-                      {ReduxTodosComp}
-                      {ReduxPhotosComp}
-                      
+                      <ReduxAlbums />
+                      <ReduxTodos />
+                      <ReduxPhotos fallback={<CustomLoader />} />
                     </div>
                   );
                 }}
