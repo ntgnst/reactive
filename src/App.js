@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
-import React, { useState } from "react";
+import React from "react";
 import Contact from "./components/contact/Contact";
 import ErrorHandler from "./components/ErrorHandler";
 import FormSample from "./components/FormSample";
@@ -14,14 +14,9 @@ import TwoWayBinding from "./components/TwoWayBinding";
 import logo from "./logo.svg";
 import ReduxAlbums from "./components/ReduxAlbums";
 import FetchData from "./components/FetchData";
-import Loader from "react-loader-spinner";
 import ReduxPhotos from "./components/ReduxPhotos";
-// const FetchData = React.lazy(() => import("./components/FetchData"));
+import CustomLoader from "./components/CustomLoader";
 const App = () => {
-  const [showPhotos, setShowPhotos] = useState(false);
-  const changePhotoState = () => {
-    setShowPhotos(!showPhotos);
-  };
   return (
     <Provider store={store}>
       <Router>
@@ -44,7 +39,7 @@ const App = () => {
                       <img src={logo} alt="logo" style={{ width: 250 }} />
                       <ReduxAlbums />
                       <ReduxTodos />
-                      <ReduxPhotos />
+                      <ReduxPhotos fallback={<CustomLoader />} />
                     </div>
                   );
                 }}

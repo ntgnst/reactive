@@ -60,7 +60,7 @@ class ReduxPhoto extends Component {
             <React.Fragment key={item.thumbnailUrl}>
               {item.title}
               <Parallax
-                strength={200}
+                strength={300}
                 css={insideStyles}
                 bgImageSizes={200}
                 bgImage={item.thumbnailUrl}
