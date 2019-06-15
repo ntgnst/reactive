@@ -4,6 +4,7 @@ import React from "react";
 import Contact from "./components/contact/Contact";
 import ErrorHandler from "./components/ErrorHandler";
 import FormSample from "./components/FormSample";
+import withAnalytics from "./components/withAnalytics";
 import Layout from "./components/layout/Layout";
 import OldPage from "./components/OldPage";
 import Page404 from "./components/layout/Page404";
@@ -16,7 +17,11 @@ import ReduxAlbums from "./components/ReduxAlbums";
 import FetchData from "./components/FetchData";
 import ReduxPhotos from "./components/ReduxPhotos";
 import CustomLoader from "./components/CustomLoader";
+
 const App = () => {
+  const ReduxAlbumsComp = <withAnalytics ><ReduxAlbums/></withAnalytics>;
+  const ReduxTodosComp = <withAnalytics ><ReduxTodos/></withAnalytics>;
+  const ReduxPhotosComp = <withAnalytics ><ReduxPhotos/></withAnalytics>;
   return (
     <Provider store={store}>
       <Router>
@@ -37,9 +42,10 @@ const App = () => {
                     >
                       <h2>Home Page</h2>
                       <img src={logo} alt="logo" style={{ width: 250 }} />
-                      <ReduxAlbums />
-                      <ReduxTodos />
-                      <ReduxPhotos fallback={<CustomLoader />} />
+                      {ReduxAlbumsComp}
+                      {ReduxTodosComp}
+                      {ReduxPhotosComp}
+                      
                     </div>
                   );
                 }}
@@ -48,13 +54,13 @@ const App = () => {
                 path="/contact"
                 exect={true}
                 stict={true}
-                component={Contact}
+                component={withAnalytics(Contact)}
               />
-              <Route path="/form" component={FormSample} />
-              <Route path="/fetch/:type" component={FetchData} />
-              <Route path="/twb" component={TwoWayBinding} />
-              <Route path="/old" component={OldPage} />
-              <Route path="/hoc" component={TryingHOCComponent} />
+              <Route path="/form" component={withAnalytics(FormSample)} />
+              <Route path="/fetch/:type" component={withAnalytics(FetchData)} />
+              <Route path="/twb" component={withAnalytics(TwoWayBinding)} />
+              <Route path="/old" component={withAnalytics(OldPage)} />
+              <Route path="/hoc" component={withAnalytics(TryingHOCComponent)} />
               <Route component={Page404} />
             </Switch>
           </Layout>
