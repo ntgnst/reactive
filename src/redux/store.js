@@ -4,6 +4,7 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 import albumReducer from "./reducers/albumReducer";
+import analyticReducer from "./reducers/analyticReducer";
 import albums from "./defaultData/albums";
 import crashReporter from "./middleware/crashReporter";
 import logger from "./middleware/logger";
@@ -12,6 +13,7 @@ import photos from "./defaultData/photos";
 import { rootSaga } from "./saga/index.saga";
 import todoReducer from "./reducers/todoReducer";
 import todos from "./defaultData/todos";
+import analytic from "./defaultData/analytic";
 
 const sagaMiddleware = createSagaMiddleware({
   onError: error => {
@@ -29,9 +31,10 @@ const store = createStore(
   combineReducers({
     todos: todoReducer,
     photos: photoReducer,
-    albums: albumReducer
+    albums: albumReducer,
+    analytic: analyticReducer
   }),
-  { todos: todos, photos: photos, albums: albums },
+  { todos: todos, photos: photos, albums: albums, analytic: analytic },
   allEnhancers
 );
 

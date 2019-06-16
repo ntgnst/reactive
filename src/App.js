@@ -19,9 +19,6 @@ import ReduxPhotos from "./components/ReduxPhotos";
 import CustomLoader from "./components/CustomLoader";
 
 const App = () => {
-  const ReduxAlbumsComp = <withAnalytics ><ReduxAlbums/></withAnalytics>;
-  const ReduxTodosComp = <withAnalytics ><ReduxTodos/></withAnalytics>;
-  const ReduxPhotosComp = <withAnalytics ><ReduxPhotos/></withAnalytics>;
   return (
     <Provider store={store}>
       <Router>

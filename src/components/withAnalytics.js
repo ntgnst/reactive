@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-
+import {connect} from 'react-redux';
+import {types, sendAnalytics} from '../redux/actions/analytic';
 export default function withAnalytics(WrappedComponent, options = {}) {
   const trackPage = page => {
     alert("Page Changed. And Ready for analytic request !");
@@ -10,6 +11,7 @@ export default function withAnalytics(WrappedComponent, options = {}) {
     componentDidMount() {
       const page = this.props.location.pathname;
       trackPage(page);
+      this.props.dispatch(sendAnalytics());
     }
 
     componentWillReceiveProps(nextProps) {
@@ -24,6 +26,9 @@ export default function withAnalytics(WrappedComponent, options = {}) {
     render() {
       return <WrappedComponent {...this.props} />;
     }
+    
   };
-  return HOC;
+  const mapStateToProps = (state, props) => ({ analytic: state.analytic });
+  
+  return connect(mapStateToProps)(HOC);
 }
